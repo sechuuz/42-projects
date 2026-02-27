@@ -6,12 +6,40 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 13:08:00 by sechavez          #+#    #+#             */
-/*   Updated: 2026/02/25 16:26:23 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/02/27 14:57:22 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "push_swap.h"
+
+void	sort_stack(t_stack **sta, t_stack **stb)
+{
+	t_stack *sptr;
+	int size;
+
+	sptr = *sta;
+	size = ft_stacksize(*sta);
+	while(sptr && sptr->next && size > 3)
+	{
+		if (sptr->next && (sptr->val < sptr->next->val))
+			sptr = sptr->next;
+		else
+		{
+			stack_push(sta, stb);
+			sptr = *sta;
+			size--;
+		}
+	}
+	sptr = sptr->next;
+	if (sptr->val > sptr->next->val)
+	{
+		stack_swap(sta);
+		stack_rotate(sta);
+	}
+	while (*stb)
+		stack_push(stb, sta);
+}
 
 int main(int count, char* string[])
 {
@@ -52,6 +80,8 @@ int main(int count, char* string[])
 			stack_revrotate(&sta);
 		else if (!(ft_strncmp(input, "rrb", 3)))
 			stack_revrotate(&stb);
+		else if (!(ft_strncmp(input, "ch", 2)))
+			sort_stack(&sta, &stb);
 		i = 1;
 		sptr = sta;
 		while (sptr)

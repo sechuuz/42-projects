@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:34:54 by sechavez          #+#    #+#             */
-/*   Updated: 2026/02/25 14:36:35 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/02/27 14:15:50 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,19 @@ t_stack	*ft_stacklast(t_stack *lst)
 	while (t->next != 0)
 		t = t->next;
 	return (t);
+}
+
+int	ft_stacksize(t_stack *sta)
+{
+	int	i;
+
+	if (!sta)
+		return (0);
+	i = 1;
+	while (sta->next != 0)
+	{
+		sta = sta->next;
+		i++;
+	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 #    By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/23 12:15:50 by sechavez          #+#    #+#              #
-#    Updated: 2026/02/25 16:26:28 by sechavez         ###   ########.fr        #
+#    Updated: 2026/02/27 14:34:55 by sechavez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,6 @@ fclean : clean
 re : fclean $(NAME)
 
 run :
-	./push_swap 1 2 3 5 4
+	./push_swap 1 2 3 5 4 8 7
 
 .PHONY: all clean fclean re

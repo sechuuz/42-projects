@@ -1,0 +1,32 @@
+i.
+
+1. if size > 5 push 2 nodes from a to b
+
+ii.
+
+2. find btarget (biggest int thats smaller than current - else, biggest value in b)
+
+3. do we need rx or rrx? (check if top half or bottom half)
+
+4. if both are same half, optimize with rr or rrr
+
+5. save score, repeat and execute lowest then push
+
+iii.
+
+6. sort three
+
+iv.
+
+7. find atarget (smallest int thats bigger than current - else, smallest value in a)
+
+8. do we need rx or rrx? (check if top half or bottom half)
+
+9. push, repeat til all is in stack a.
+
+v.
+
+10. find which half minimum value is in to determine if ra or rra.
+
+11. rotate until min value is at the top
+
