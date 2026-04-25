@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/23 13:08:00 by sechavez          #+#    #+#             */
-/*   Updated: 2026/04/21 17:13:03 by sechavez         ###   ########.fr       */
+/*   Created: 2026/04/23 15:35:55 by sechavez          #+#    #+#             */
+/*   Updated: 2026/04/23 18:43:26 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int count, char *string[])
+int main(int count, char* string[])
 {
-	t_stack	*sta;
-	t_stack	*stb;
-
-	sta = 0;
-	stb = 0;
-	if (count < 2)
-		return (0);
-	if (!build_nodes(&sta, count, string))
-		error_exit(&sta, &stb);
-	if (has_duplicates(sta))
-		error_exit(&sta, &stb);
-	if (count < 4)
-	{
-		if (!is_sorted(sta))
-			execute("sa", &sta, &stb, 1);
-	}
-	else
-		sort_stack(&sta, &stb);
-	ft_stackfree(&sta);
-	ft_stackfree(&stb);
-	return (0);
+	
 }
