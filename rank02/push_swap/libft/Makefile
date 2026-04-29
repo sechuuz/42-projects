@@ -6,7 +6,7 @@
 #    By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/07 16:54:45 by sechavez          #+#    #+#              #
-#    Updated: 2026/02/23 13:03:18 by sechavez         ###   ########.fr        #
+#    Updated: 2026/04/29 16:19:03 by sechavez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SOURCES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		./ft_printf/pf_handle_unsint.c ./ft_printf/pf_handle_hex.c \
 		./ft_printf/pf_parse_format.c ./ft_printf/pf_print_padding.c \
 		./ft_printf/pf_format_num.c ./ft_printf/pf_format_text.c \
-		./ft_printf/pf_bufitoa.c
+		./ft_printf/pf_bufitoa.c \
+		get_next_line.c get_next_line_utils.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
