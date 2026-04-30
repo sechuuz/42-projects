@@ -6,7 +6,7 @@
 #    By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/23 12:15:50 by sechavez          #+#    #+#              #
-#    Updated: 2026/04/29 20:42:38 by sechavez         ###   ########.fr        #
+#    Updated: 2026/04/30 21:36:59 by sechavez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(LIBFTPATH)/$(LIBFT) :
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(OBJBONUS)
 	make -C $(LIBFTPATH) clean
 
 fclean : clean

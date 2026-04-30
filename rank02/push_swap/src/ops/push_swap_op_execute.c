@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 14:08:13 by sechavez          #+#    #+#             */
-/*   Updated: 2026/04/29 19:44:33 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:36:25 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	execute_rotate(char *op, t_stack **sta, t_stack **stb)
 void	execute(char *op, t_stack **sta, t_stack **stb, int print)
 {
 	if (!execute_swap_push(op, sta, stb) && !execute_rotate(op, sta, stb))
-		error_exit(sta, stb);
+		error_exit(sta, stb, 0, 0);
 	if (print)
 		ft_printf("%s\n", op);
 }

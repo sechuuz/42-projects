@@ -77,7 +77,7 @@ To run the checker program, call the push_swap file, the list of integers you'd 
 ARG="3 2 1 0"; ./push_swap $ARG | ./checker $ARG
 ```
 
-This program will accept a list of operations and will verify if it has been correctly sorted. **OK** will be displayed if it was sorted with the operations specified, and **KO** if not.
+This program will accept a list of operations and will verify if it has been correctly sorted. **OK** will be displayed if it was sorted with the operations specified, and **KO** if not. Like the main push_swap program, any invalid arguments will be met with an error message.
 
 ## Resources
 

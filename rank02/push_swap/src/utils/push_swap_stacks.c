@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 14:34:54 by sechavez          #+#    #+#             */
-/*   Updated: 2026/04/21 15:27:42 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/04/30 17:53:48 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,22 @@ int	ft_stacksize(t_stack *sta)
 	return (i);
 }
 
-void	ft_stackfree(t_stack **sta)
+void	ft_stacksfree(t_stack **sta, t_stack **stb)
 {
 	t_stack	*tmp;
-	t_stack	*curr;
 
-	if (!sta || !(*sta))
-		return ;
-	curr = *sta;
-	while (curr)
+	while (sta && *sta)
 	{
-		tmp = curr->next;
-		free(curr);
-		curr = tmp;
+		tmp = (*sta)->next;
+		free(*sta);
+		*sta = tmp;
 	}
-	*sta = 0;
+	while (stb && *stb)
+	{
+		tmp = (*stb)->next;
+		free(*stb);
+		*stb = tmp;
+	}
 }
 
 void	ft_stackadd_back(t_stack **sta, t_stack *new)

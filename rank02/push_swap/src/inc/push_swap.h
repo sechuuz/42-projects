@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 13:14:28 by sechavez          #+#    #+#             */
-/*   Updated: 2026/04/21 17:42:15 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:26:12 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	stack_rotate(t_stack **sta);
 void	stack_revrotate(t_stack **sta);
 void	stack_dualops(t_stack **sta, t_stack **stb, char type);
 void	sort_stack(t_stack **sta, t_stack **stb);
-void	ft_stackfree(t_stack **sta);
+void	ft_stacksfree(t_stack **sta, t_stack **stb);
 void	ft_stackadd_back(t_stack **sta, t_stack *new);
 int		ft_strcmp(const char *s1, const char *s2);
 void	execute(char *op, t_stack **sta, t_stack **stb, int print);
@@ -60,9 +60,10 @@ void	prep_move(t_stack **sta, t_stack **stb, t_stack *top, char stack);
 void	move_to_b(t_stack **sta, t_stack **stb);
 void	move_to_a(t_stack **sta, t_stack **stb);
 void	sort_stack(t_stack **sta, t_stack **stb);
-void	error_exit(t_stack **sta, t_stack **stb);
+void	error_exit(t_stack **sta, t_stack **stb, char **arr, int is_split);
 int		validity_check(const char *str);
-int		build_nodes(t_stack **sta, int count, char *string[]);
+int		build_nodes(t_stack **sta, char *string[], int is_split);
 int		has_duplicates(t_stack *sta);
+void	free_arr(char **arr);
 
 #endif

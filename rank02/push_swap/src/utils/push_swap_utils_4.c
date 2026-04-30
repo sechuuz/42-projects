@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 14:29:39 by sechavez          #+#    #+#             */
-/*   Updated: 2026/04/21 17:43:32 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:05:19 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,28 @@ void	sort_stack(t_stack **sta, t_stack **stb)
 	min_top(sta, stb);
 }
 
-void	error_exit(t_stack **sta, t_stack **stb)
+void	free_arr(char **arr)
 {
-	if (sta && *sta)
-		ft_stackfree(sta);
-	if (stb && *stb)
-		ft_stackfree(stb);
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+void	error_exit(t_stack **sta, t_stack **stb, char **arr, int is_split)
+{
+	ft_stacksfree(sta, stb);
+	if (is_split && arr)
+		free_arr(arr);
 	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	exit(1);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

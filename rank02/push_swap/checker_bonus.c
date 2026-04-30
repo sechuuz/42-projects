@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 15:35:55 by sechavez          #+#    #+#             */
-/*   Updated: 2026/04/29 20:39:26 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:35:26 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,34 @@ static void	check_ok(t_stack *sta, t_stack *stb)
 		write(1, "KO\n", 3);
 }
 
+static char	**init_args(int count, char *string[], int *is_split)
+{
+	if (count == 2)
+	{
+		*is_split = 1;
+		return (ft_split(string[1], ' '));
+	}
+	*is_split = 0;
+	return (string);
+}
+
 int	main(int count, char *string[])
 {
 	t_stack	*sta;
 	t_stack	*stb;
+	char	**arr;
 	char	*op;
+	int		is_split;
 
-	sta = 0;
-	stb = 0;
 	if (count < 2)
 		return (0);
-	if (!build_nodes(&sta, count, string))
-		error_exit(&sta, &stb);
+	sta = 0;
+	stb = 0;
+	arr = init_args(count, string, &is_split);
+	if (!build_nodes(&sta, arr, is_split))
+		error_exit(&sta, &stb, arr, is_split);
 	if (has_duplicates(sta))
-		error_exit(&sta, &stb);
+		error_exit(&sta, &stb, arr, is_split);
 	op = get_next_line(0);
 	while (op)
 	{
@@ -42,7 +56,6 @@ int	main(int count, char *string[])
 		op = get_next_line(0);
 	}
 	check_ok(sta, stb);
-	ft_stackfree(&sta);
-	ft_stackfree(&stb);
+	ft_stacksfree(&sta, &stb);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:46:19 by sechavez          #+#    #+#             */
-/*   Updated: 2026/04/21 15:46:56 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:26:15 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	validity_check(const char *str)
 	return (1);
 }
 
-int	build_nodes(t_stack **sta, int count, char *string[])
+int	build_nodes(t_stack **sta, char *string[], int is_split)
 {
 	int		i;
 	t_stack	*new;
 
-	i = 1;
-	while (i < count)
+	i = !is_split;
+	while (string[i])
 	{
 		if (!validity_check(string[i]))
 			return (0);
