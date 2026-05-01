@@ -9,6 +9,7 @@
 | **01** | [ft_printf](./rank01/ft_printf) | Variadic Functions | ``c`` | ✅ | 125/100 |
 | **01** | [get_next_line](./rank01/get_next_line) | `fd`, Static Variables | ``c`` | ✅ | 125/100 |
 | **01** | [born2beroot](./rank01/born2beroot) | Network & SysAdmin, Virtualization | ``shell`` | ✅ | 125/100 |
+| **02** | [push_swap](./rank02/push_swap) | Algorithms & Complexity | ``c`` | ✅ | 125/100 |
 
 ## Technical Skills
 
