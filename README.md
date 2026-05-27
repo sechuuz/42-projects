@@ -10,6 +10,8 @@
 | **01** | [get_next_line](./rank01/get_next_line) | `fd`, Static Variables | ``c`` | ✅ | 125/100 |
 | **01** | [born2beroot](./rank01/born2beroot) | Network & SysAdmin, Virtualization | ``shell`` | ✅ | 125/100 |
 | **02** | [push_swap](./rank02/push_swap) | Algorithms & Complexity | ``c`` | ✅ | 125/100 |
+| **02** | [Python Modules 00-10](./rank02) | Python Fundamentals | ``python`` | ⏳ | ⏳ |
+| **02** | [A-Maze-ing](./rank02/A-Maze-ing) | Maze Generation | ``python`` | ✅ | 121/100 |
 
 ## Technical Skills
 
