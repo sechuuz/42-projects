@@ -10,14 +10,18 @@
 | **01** | [get_next_line](./rank01/get_next_line) | `fd`, Static Variables | ``c`` | ✅ | 125/100 |
 | **01** | [born2beroot](./rank01/born2beroot) | Network & SysAdmin, Virtualization | ``shell`` | ✅ | 125/100 |
 | **02** | [push_swap](./rank02/push_swap) | Algorithms & Complexity | ``c`` | ✅ | 125/100 |
-| **02** | [Python Modules 00-10](./rank02) | Python Fundamentals | ``python`` | ⏳ | ⏳ |
+| **02** | [Python Modules 00-10](./rank02/Python%20Modules%2000-10/) | Python Fundamentals | ``python`` | ✅ | 100/100 |
 | **02** | [A-Maze-ing](./rank02/A-Maze-ing) | Maze Generation | ``python`` | ✅ | 121/100 |
+| **03** | [Codexion](./rank03/Codexion/) | Scheduling & Multi-threading | ``c`` | ⏳ | ⏳ |
+| **03** | [Fly-in](./rank03/Fly-in/) | Graph Routing, Pathfinding | ``python`` | ⏳ | ⏳ |
+| **03** | [Call Me Maybe](./rank03/Call%20Me%20Maybe/) | LLM, AI | ``python`` | ⏳ | ⏳ |
 
 ## Technical Skills
 
 ### Languages & Logic
 <p align="left">
   <img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white" />
+  <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" />
   <img src="https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white" />
 </p>
 
@@ -33,4 +37,5 @@
   <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" />
   <img src="https://img.shields.io/badge/Makefile-00599C?style=for-the-badge&logo=gnu&logoColor=white" />
   <img src="https://img.shields.io/badge/Vim-%2311AB00.svg?style=for-the-badge&logo=vim&logoColor=white" />
+  <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" />
 </p>
