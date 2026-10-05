@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 20:38:47 by sechavez          #+#    #+#             */
-/*   Updated: 2026/09/30 20:50:09 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/10/03 18:55:50 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ static int	check_burnout(t_env *env, t_coder *coder, long long now)
 	burned = 0;
 	pthread_mutex_lock(&coder->state_mutex);
 	if (now - coder->last_compile_start > env->time_to_burnout)
+		burned = 1;
+	pthread_mutex_unlock(&coder->state_mutex);
+	if (burned)
 	{
 		print_state(env, coder->id, "burned out");
-		pthread_mutex_lock(&env->env_mutex);
-		env->is_running = 0;
-		pthread_mutex_unlock(&env->env_mutex);
-		burned = 1;
+		stop_simulation(env);
 	}
-	pthread_mutex_unlock(&coder->state_mutex);
 	return (burned);
 }
 
@@ -35,8 +34,6 @@ static int	check_goal(t_env *env)
 	int	i;
 	int	all_done;
 
-	if (env->compiles_required == 0)
-		return (0);
 	all_done = 1;
 	i = 0;
 	while (i < env->num_coders)
@@ -48,11 +45,7 @@ static int	check_goal(t_env *env)
 		i++;
 	}
 	if (all_done)
-	{
-		pthread_mutex_lock(&env->env_mutex);
-		env->is_running = 0;
-		pthread_mutex_unlock(&env->env_mutex);
-	}
+		stop_simulation(env);
 	return (all_done);
 }
 
@@ -82,17 +75,16 @@ void	*monitor_routine(void *arg)
 
 static void	execute_compile_cycle(t_coder *coder)
 {
-	acquire_dongles(coder);
-	if (!is_simulation_active(coder->env))
-	{
-		release_dongles(coder);
+	if (!acquire_dongles(coder))
 		return ;
-	}
 	pthread_mutex_lock(&coder->state_mutex);
 	coder->last_compile_start = get_time_ms();
 	pthread_mutex_unlock(&coder->state_mutex);
 	print_state(coder->env, coder->id, "is compiling");
 	precise_sleep(coder->env->time_to_compile, coder->env);
+	release_dongles(coder);
+	if (!is_simulation_active(coder->env))
+		return ;
 	pthread_mutex_lock(&coder->state_mutex);
 	coder->compile_count++;
 	pthread_mutex_unlock(&coder->state_mutex);

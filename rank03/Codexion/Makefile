@@ -6,7 +6,7 @@
 #    By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/28 21:58:58 by sechavez          #+#    #+#              #
-#    Updated: 2026/09/29 22:06:23 by sechavez         ###   ########.fr        #
+#    Updated: 2026/10/03 17:18:39 by sechavez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RM		= rm -f
 SRCS	= codexion.c \
 		init.c \
 		utils.c \
+		setup.c \
 		heap.c \
 		heap_utils.c \
 		dongles.c \
@@ -30,7 +31,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cc
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

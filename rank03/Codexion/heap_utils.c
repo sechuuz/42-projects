@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 21:51:36 by sechavez          #+#    #+#             */
-/*   Updated: 2026/09/28 21:57:54 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/10/03 17:18:39 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_req	pq_peek(t_pq *pq)
 	top.coder_id = -1;
 	top.arrival_time = 0;
 	top.deadline = 0;
+	top.request_order = 0;
 	return (top);
 }

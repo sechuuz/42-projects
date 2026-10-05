@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 20:04:33 by sechavez          #+#    #+#             */
-/*   Updated: 2026/09/28 21:56:26 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/10/03 18:21:03 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_req
 	int			coder_id;
 	long long	arrival_time;
 	long long	deadline;
+	long long	request_order;
 }	t_req;
 
 typedef struct s_pq
@@ -48,6 +49,7 @@ typedef struct s_dongle
 	pthread_cond_t	cond;
 	int				is_taken;
 	long long		available_at;
+	long long		next_request_order;
 	t_pq			queue;
 }	t_dongle;
 
@@ -82,10 +84,15 @@ typedef struct s_env
 	t_dongle		*dongles;
 	t_coder			*coders;
 	pthread_t		monitor;
+
+	int				env_inited;
+	int				print_inited;
+	int				dongles_ready;
+	int				coders_ready;
 }	t_env;
 
 long long	get_time_ms(void);
-void		precise_sleep(long long ms, t_env *env);
+int			precise_sleep(long long ms, t_env *env);
 void		print_state(t_env *env, int coder_id, const char *msg);
 int			is_simulation_active(t_env *env);
 long long	safe_atoi(const char *str);
@@ -98,12 +105,16 @@ void		pq_free(t_pq *pq);
 
 int			parse_args(t_env *env, int argc, char **argv);
 int			init_simulation(t_env *env);
+int			init_dongles(t_env *env);
+int			init_coders(t_env *env);
+void		release_one_dongle(t_env *env, int dongle_id, long long now);
 void		clean_all(t_env *env);
+void		stop_simulation(t_env *env);
 
 void		*coder_routine(void *arg);
 void		*monitor_routine(void *arg);
 
-void		acquire_dongles(t_coder *coder);
+int			acquire_dongles(t_coder *coder);
 void		release_dongles(t_coder *coder);
 
 #endif

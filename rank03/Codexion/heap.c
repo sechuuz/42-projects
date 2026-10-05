@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/27 19:55:15 by sechavez          #+#    #+#             */
-/*   Updated: 2026/09/29 20:37:46 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/10/03 17:18:39 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static int	is_higher_priority(t_req a, t_req b, t_sched sched)
 {
 	if (sched == SCHEDL_FIFO)
 	{
-		if (a.arrival_time != b.arrival_time)
-			return (a.arrival_time < b.arrival_time);
-		return (a.coder_id < b.coder_id);
+		return (a.request_order < b.request_order);
 	}
 	if (a.deadline != b.deadline)
 		return (a.deadline < b.deadline);

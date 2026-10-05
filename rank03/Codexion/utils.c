@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 18:26:36 by sechavez          #+#    #+#             */
-/*   Updated: 2026/09/29 23:30:05 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/10/03 19:07:09 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	print_state(t_env *env, int coder_id, const char *msg)
 	pthread_mutex_unlock(&env->print_mutex);
 }
 
-void	precise_sleep(long long ms, t_env *env)
+int	precise_sleep(long long ms, t_env *env)
 {
 	long long	start;
 	long long	elapsed;
@@ -79,11 +79,12 @@ void	precise_sleep(long long ms, t_env *env)
 	{
 		elapsed = get_time_ms() - start;
 		if (elapsed >= ms)
-			break ;
+			return (1);
 		rem = ms - elapsed;
 		if (rem > 10)
 			usleep((rem - 5) * 1000);
 		else
 			usleep(500);
 	}
+	return (0);
 }

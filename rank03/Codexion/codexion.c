@@ -6,7 +6,7 @@
 /*   By: sechavez <sechavez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 19:47:39 by sechavez          #+#    #+#             */
-/*   Updated: 2026/09/29 22:06:23 by sechavez         ###   ########.fr       */
+/*   Updated: 2026/10/03 17:18:39 by sechavez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ static int	spawn_coders(t_env *env, int *created)
 static void	launch_simulation(t_env *env, int *created, int *monitor)
 {
 	env->start_time = get_time_ms();
+	if (env->compiles_required == 0)
+	{
+		stop_simulation(env);
+		return ;
+	}
 	if (spawn_coders(env, created))
 	{
 		if (pthread_create(&env->monitor, NULL, monitor_routine, env) == 0)
 			*monitor = 1;
 	}
 	if (!*monitor || *created < env->num_coders)
-	{
-		pthread_mutex_lock(&env->env_mutex);
-		env->is_running = 0;
-		pthread_mutex_unlock(&env->env_mutex);
-	}
+		stop_simulation(env);
 }
 
 static void	join_threads(t_env *env, int created_coders, int monitor_created)
@@ -59,6 +60,23 @@ static void	join_threads(t_env *env, int created_coders, int monitor_created)
 	}
 }
 
+void	stop_simulation(t_env *env)
+{
+	int	i;
+
+	pthread_mutex_lock(&env->env_mutex);
+	env->is_running = 0;
+	pthread_mutex_unlock(&env->env_mutex);
+	i = 0;
+	while (i < env->num_coders)
+	{
+		pthread_mutex_lock(&env->dongles[i].mutex);
+		pthread_cond_broadcast(&env->dongles[i].cond);
+		pthread_mutex_unlock(&env->dongles[i].mutex);
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_env	env;
@@ -68,7 +86,9 @@ int	main(int argc, char *argv[])
 	created_coders = 0;
 	monitor_created = 0;
 	memset(&env, 0, sizeof(t_env));
-	if (!parse_args(&env, argc, argv) || !init_simulation(&env))
+	if (!parse_args(&env, argc, argv))
+		return (1);
+	if (!init_simulation(&env))
 	{
 		clean_all(&env);
 		return (1);
